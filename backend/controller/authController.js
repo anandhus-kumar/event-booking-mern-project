@@ -76,9 +76,38 @@ exports.loginUser = async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
-      token: generateToken(_id, user.role),
+      token: generateToken(user._id, user.role),
     });
   } catch (error) {
     console.error(error);
+  }
+};
+
+exports.verifyOtp = async (req, res) => {
+  const { email, otp } = req.body;
+
+  try {
+    const otpRecord = await OTP.findOne({
+      email,
+      otp,
+      action: "account_verification",
+    });
+    if (!otpRecord) {
+      return res.status(400).json({ error: "Invalid or expired OTP" });
+    }
+    const user = await User.findOneAndUpdate({ email }, { isVerified: true });
+
+    console.log("updated the value");
+    await OTP.deleteMany({ email, action: "account_verification" });
+    res.json({
+      message: "Account verified successfully.You can now log in.",
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      token: generateToken(user._id, user.role),
+    });
+  } catch (error) {
+    console.error("error occured while verifing ", error);
   }
 };
