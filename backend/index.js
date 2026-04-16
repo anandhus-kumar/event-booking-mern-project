@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth");
 const eventRoutes = require("./routes/events");
-// const bookingsRoutes = require("./routes/bookings");
+const bookingsRoutes = require("./routes/bookings");
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/events", eventRoutes);
-// app.use("/api/bookings", bookingsRoutes);
+app.use("/api/bookings", bookingsRoutes);
 
 const PORT = process.env.PORT || 5000;
 

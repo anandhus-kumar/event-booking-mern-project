@@ -1,4 +1,4 @@
-const Event = require("../models/Event");
+const Events = require("../models/Events");
 
 exports.getAllEvents = async (req, res) => {
   try {
@@ -9,7 +9,7 @@ exports.getAllEvents = async (req, res) => {
     if (req.query.location) {
       filters.location = req.query.location;
     }
-    const events = await Event.find(filters);
+    const events = await Events.find(filters);
     res.json(events);
   } catch (error) {
     res.status(500).json({
@@ -22,10 +22,10 @@ exports.getAllEvents = async (req, res) => {
 
 exports.getEventById = async (req, res) => {
   try {
-    const event = await Event.findById(req.params.id);
+    const event = await Events.findById(req.params.id);
     if (!event) {
       return res.status(404).json({
-        error: "Event not found",
+        error: "Events not found",
       });
     }
     res.json(event);
@@ -48,7 +48,7 @@ exports.createEvent = async (req, res) => {
     imageUrl,
   } = req.body;
   try {
-    const event = await Event.create({
+    const event = await Events.create({
       title,
       description,
       date,
@@ -76,7 +76,7 @@ exports.updateEvent = async (req, res) => {
     imageUrl,
   } = req.body;
   try {
-    const event = await Event.findByIdAndUpdate(req.params.id, {
+    const event = await Events.findByIdAndUpdate(req.params.id, {
       title,
       description,
       date,
@@ -87,8 +87,9 @@ exports.updateEvent = async (req, res) => {
       imageUrl,
     });
     if (!event) {
-      return res.status(404).json({ error: "Event not found" });
+      return res.status(404).json({ error: "Events not found" });
     }
+    res.json(event);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -96,11 +97,11 @@ exports.updateEvent = async (req, res) => {
 
 exports.deleteEvent = async (req, res) => {
   try {
-    const event = await Event.findByIdAndDelete(req.params.id);
+    const event = await Events.findByIdAndDelete(req.params.id);
     if (!event) {
-      return res.status(404).json({ error: "Event not found" });
+      return res.status(404).json({ error: "Events not found" });
     }
-    res.json({ message: "Event deleted successfully" });
+    res.json({ message: "Events deleted successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
