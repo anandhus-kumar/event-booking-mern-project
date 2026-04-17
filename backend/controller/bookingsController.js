@@ -52,15 +52,21 @@ exports.bookEvent = async (req, res) => {
 // booking otp send
 
 exports.sendBookingOTP = async (req, res) => {
-  const { eventId } = req.body;
-  const userEmail = req.user.email;
-  const otp = generateOTP();
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  console.log(otp);
   try {
-    await OTP.findOneAndDelete({ email: userEmail, action: "event_booking" });
-    await OTP.create({ email: userEmail, otp, action: "event_booking" });
-    await sendOtpEmails(userEmail, otp, "event_booking");
-    res.json({ message: "OTP Sent to email" });
-  } catch (error) {}
+    await OTP.findOneAndDelete({
+      email: req.user.email,
+      action: "event_booking",
+    });
+    await OTP.create({ email: req.user.email, otp, action: "event_booking" });
+    await sendOtpEmails(req.user.email, otp, "event_booking");
+    res.json({ message: "OTP sent successfully" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error sending OTP", error: error.message });
+  }
 };
 
 // get booking details

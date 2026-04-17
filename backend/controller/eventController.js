@@ -53,10 +53,12 @@ exports.createEvent = async (req, res) => {
       description,
       date,
       location,
-      price,
+      price: price || 0,
       category,
       totalSeats,
-      imageUrl,
+      imageUrl: imageUrl || "",
+      availableSeats: totalSeats,
+      createdBy: req.user.id,
     });
     res.status(201).json(event);
   } catch (error) {

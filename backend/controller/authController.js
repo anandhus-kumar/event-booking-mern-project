@@ -32,7 +32,6 @@ exports.registerUser = async (req, res) => {
       isVerified: false,
     });
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    console.log(`OTP for ${email} : ${otp}`);
     await OTP.create({ email, otp, action: "account_verification" });
     await sendOtpEmails(email, otp, "account_verification");
     res.status(201).json({
@@ -97,7 +96,6 @@ exports.verifyOtp = async (req, res) => {
     }
     const user = await User.findOneAndUpdate({ email }, { isVerified: true });
 
-    console.log("updated the value");
     await OTP.deleteMany({ email, action: "account_verification" });
     res.json({
       message: "Account verified successfully.You can now log in.",
