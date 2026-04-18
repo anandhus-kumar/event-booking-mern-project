@@ -6,10 +6,23 @@ exports.getAllEvents = async (req, res) => {
     if (req.query.category) {
       filters.category = req.query.category;
     }
+    if (req.query.title) {
+      filters.title = { $regex: req.query.title, $options: "i" };
+    }
     if (req.query.location) {
       filters.location = req.query.location;
     }
-    const events = await Events.find(filters);
+    if (req.query.search) {
+      filters.$or = [
+        { title: { $regex: req.query.title, $options: "i" } },
+        { category: { $regex: req.query.title, $options: "i" } },
+        { location: { $regex: req.query.title, $options: "i" } },
+      ];
+    }
+    const events = await Events.find(filters).populate(
+      "createdBy",
+      "name email",
+    );
     res.json(events);
   } catch (error) {
     res.status(500).json({
