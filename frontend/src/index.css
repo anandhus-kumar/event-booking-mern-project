@@ -3,9 +3,9 @@
 
 @theme{
   --color-txtorange:#e53d00;
-  --color-txtyellow:#ffe900;
-  --color-txtgreen:#21a0a0;
-  --color-txtgreendark:#046865;
+  --color-txtbrown:#6d0000;
+  --color-txtblue:#73aff3;
+  --color-txtwhite:#ede9d0;
 }
 
 body{

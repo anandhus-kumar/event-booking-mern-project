@@ -20,14 +20,12 @@ const Navbar = () => {
   return (
     <nav className="shadow-lg bg-white/80 backdrop-blur-md">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col sm:flex-row justify-between items-center py-4 ">
+        <div className="flex flex-col sm:flex-row justify-between items-center py-4 px-8 ">
           {/* Logo + Mobile Toggle */}
           <div className="flex items-center justify-center sm:justify-between w-full sm:w-auto gap-x-3">
             <Link to="/" className="text-gray-900 font-extrabold text-lg">
               EVENT{" "}
-              <span className="text-orange-600 hover:text-orange-500">
-                HIVE
-              </span>
+              <span className="text-txtorange hover:text-orange-500">HIVE</span>
             </Link>
 
             {/* Mobile Icon */}
@@ -76,7 +74,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   to="/register"
-                  className="bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-500 transition"
+                  className="bg-txtorange text-white px-4 py-2 rounded-md hover:bg-orange-500 transition"
                 >
                   Sign Up
                 </Link>
@@ -84,7 +82,6 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* ✅ Mobile Menu (Animated) */}
           <div
             className={`w-full sm:hidden overflow-hidden transition-all duration-300 ease-in-out ${
               isMobileMenuOpen
