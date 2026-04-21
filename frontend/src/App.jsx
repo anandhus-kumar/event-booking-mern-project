@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="bg-white w-full h-screen">
+    <div className="bg-white w-full min-h-screen">
       <Navbar />
       <Home />
     </div>

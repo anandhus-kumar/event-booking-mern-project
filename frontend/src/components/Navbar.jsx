@@ -18,21 +18,21 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="shadow-lg bg-white/80 backdrop-blur-md">
+    <nav className="shadow-lg w-full  backdrop-blur-md sm:backdrop-blur-none fixed z-50 ">
       <div className="container mx-auto px-4">
         <div className="flex flex-col sm:flex-row justify-between items-center py-4 px-8 ">
           {/* Logo + Mobile Toggle */}
           <div className="flex items-center justify-center sm:justify-between w-full sm:w-auto gap-x-3">
-            <Link to="/" className="text-gray-900 font-extrabold text-lg">
+            <Link to="/" className="text-txtwhite font-extrabold text-lg">
               EVENT{" "}
               <span className="text-txtorange hover:text-orange-500">HIVE</span>
             </Link>
 
             {/* Mobile Icon */}
-            <div className="sm:hidden  w-7 h-7 rounded-full flex items-center justify-center bg-gradient-to-br from-orange-600 to-white shadow-md  hover:shadow-2xl hover:translate-y-1 transition-all duration-300">
+            <div className="sm:hidden  w-6 h-6 rounded-full flex items-center justify-center  bg-txtwhite  hover:shadow-2xl hover:translate-y-1 transition-all duration-300">
               <FiChevronsDown
                 onClick={toggleMobilemenu}
-                className={`text-2xl  cursor-pointer transition-transform duration-300 hover:translate-y-1 ${
+                className={`text-2xl w-5 h-5  cursor-pointer transition-transform duration-300 hover:translate-y-1 ${
                   isMobileMenuOpen ? "rotate-180" : ""
                 }`}
               />
@@ -43,7 +43,7 @@ const Navbar = () => {
           <div className="hidden sm:flex items-center gap-6">
             <Link
               to="/"
-              className="text-gray-900 hover:text-orange-600 transition"
+              className="text-white hover:text-orange-600 transition"
             >
               Events
             </Link>
@@ -52,7 +52,7 @@ const Navbar = () => {
               <>
                 <Link
                   to={user.role === "admin" ? "/admin" : "/dashboard"}
-                  className="text-gray-800 hover:text-orange-600 transition"
+                  className="text-white hover:text-orange-600 transition"
                 >
                   Dashboard
                 </Link>
@@ -68,7 +68,7 @@ const Navbar = () => {
               <>
                 <Link
                   to="/login"
-                  className="text-gray-800 hover:text-orange-600 transition"
+                  className="text-white hover:text-orange-600 transition"
                 >
                   Login
                 </Link>
@@ -92,7 +92,7 @@ const Navbar = () => {
             <div className="flex flex-col items-center gap-4 py-2">
               <Link
                 to="/"
-                className="text-gray-900 hover:text-orange-600"
+                className="text-white hover:text-orange-600"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Events
@@ -102,7 +102,7 @@ const Navbar = () => {
                 <>
                   <Link
                     to={user.role === "admin" ? "/admin" : "/dashboard"}
-                    className="text-gray-800 hover:text-orange-600"
+                    className="text-white hover:text-orange-600"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Dashboard
@@ -119,7 +119,7 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/login"
-                    className="text-gray-800 hover:text-orange-600"
+                    className="text-white hover:text-orange-600"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Login
@@ -127,7 +127,7 @@ const Navbar = () => {
 
                   <Link
                     to="/register"
-                    className="bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-500 transition"
+                    className="bg-orange-600 text-white px-4 py-1 rounded-2xl hover:bg-orange-500 transition"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Sign Up
