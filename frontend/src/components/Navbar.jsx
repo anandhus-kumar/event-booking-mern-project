@@ -19,13 +19,15 @@ const Navbar = () => {
 
   return (
     <nav className="shadow-lg w-full  backdrop-blur-md sm:backdrop-blur-none fixed z-50 ">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-8 pt-4">
         <div className="flex flex-col sm:flex-row justify-between items-center py-4 px-8 ">
           {/* Logo + Mobile Toggle */}
           <div className="flex items-center justify-center sm:justify-between w-full sm:w-auto gap-x-3">
-            <Link to="/" className="text-txtwhite font-extrabold text-lg">
+            <Link to="/" className="text-txtwhite font-extrabold text-3xl">
               EVENT{" "}
-              <span className="text-txtorange hover:text-orange-500">HIVE</span>
+              <span className="text-3xl text-txtorange hover:text-orange-500">
+                HIVE
+              </span>
             </Link>
 
             {/* Mobile Icon */}
@@ -40,7 +42,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden sm:flex items-center gap-6">
+          <div className="hidden sm:flex items-center gap-16">
             <Link
               to="/"
               className="text-white hover:text-orange-600 transition"
@@ -59,7 +61,7 @@ const Navbar = () => {
 
                 <button
                   onClick={handleLogout}
-                  className="bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-500 transition"
+                  className="bg-orange-600 text-white px-4 py-1 rounded-md hover:bg-orange-500 transition"
                 >
                   Logout
                 </button>
@@ -74,7 +76,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   to="/register"
-                  className="bg-txtorange text-white px-4 py-2 rounded-md hover:bg-orange-500 transition"
+                  className="bg-txtorange text-white px-4 py-1 rounded-2xl hover:bg-orange-500 transition"
                 >
                   Sign Up
                 </Link>
@@ -89,7 +91,7 @@ const Navbar = () => {
                 : "max-h-0 opacity-0"
             }`}
           >
-            <div className="flex flex-col items-center gap-4 py-2">
+            <div className="flex flex-col items-center gap-4 py-1">
               <Link
                 to="/"
                 className="text-white hover:text-orange-600"
@@ -110,7 +112,7 @@ const Navbar = () => {
 
                   <button
                     onClick={handleLogout}
-                    className="bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-500 transition"
+                    className="bg-orange-600 text-white px-4 py-2 rounded-2xl hover:bg-orange-500 transition"
                   >
                     Logout
                   </button>
