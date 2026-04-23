@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FiChevronsDown } from "react-icons/fi";
 import { AuthContext } from "../context/authContext";
 
-const Navbar = () => {
+const Navbar = ({ isHeroVisible }) => {
   const { user, logout } = useContext(AuthContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -18,7 +18,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="shadow-lg w-full  backdrop-blur-md sm:backdrop-blur-none fixed z-50 ">
+    <nav
+      className={`shadow-lg w-full top-0 fixed ${isHeroVisible ? "backdrop-blur-md sm:backdrop-blur-none" : "bg-black"} transition-all ease-in duration-300  fixed z-50`}
+    >
       <div className="container mx-auto px-8 pt-4">
         <div className="flex flex-col sm:flex-row justify-between items-center py-4 px-8 ">
           {/* Logo + Mobile Toggle */}

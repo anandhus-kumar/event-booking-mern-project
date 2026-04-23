@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { features } from "../constants/data";
 import { Link } from "react-router-dom";
+import api from "../utils/axios";
 
 const events = [
   {
@@ -70,31 +71,31 @@ const events = [
   },
 ];
 
-const Home = () => {
-  // // const [events, setEvents] = useState([]);
-  // const [search, setSearch] = useState("");
+const Home = ({ heroRef }) => {
+  const [events, setEvents] = useState([]);
+  const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // const fetchEvents = async () => {
-  //   try {
-  //     const { data } = await api.get(`/events?search=${search}`);
-  //     setEvents(data);
-  //   } catch (error) {
-  //     console.error("error fetching events:", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+  const fetchEvents = async () => {
+    try {
+      const { data } = await api.get(`/events?search=${search}`);
+      setEvents(data);
+    } catch (error) {
+      console.error("error fetching events:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  // useEffect(() => {
-  //   const timeoutId = setTimeout(() => fetchEvents(), 400);
-  //   return () => clearTimeout(timeoutId);
-  // }, [search]);
+  useEffect(() => {
+    const timeoutId = setTimeout(() => fetchEvents(), 400);
+    return () => clearTimeout(timeoutId);
+  }, [search]);
 
   return (
     <>
       {/*  hero secrion */}
-      <section id="hero">
+      <section id="hero" ref={heroRef}>
         <div className="relative bg-black text-white overflow-hidden mb-12 shadow-2xl min-h-screen">
           <div className=" absolute inset-0  bg-[url('/hero.jpg')] bg-cover bg-center">
             <div className="absolute inset-0 bg-gradient-to-b from-black via-black/20 to-transparent"></div>
@@ -164,10 +165,8 @@ const Home = () => {
         id="upcomming "
         className=" relative w-full bg-[url('/event.jpg')] bg-cover bg-center"
       >
-        <div className="absolute bg-gradient-to-b from-black to-transparent w-full inset-0 b">
-          {" "}
-        </div>
-        <div className="flex absolute inset-0 z-10 w-full mx-auto items-center justify-between mb-8  max-w-7xl  px-3  py-5 border-b border-gray-200 pb-4">
+        {" "}
+        <div className="flex  w-full mx-auto items-center justify-between mb-8  max-w-7xl  px-3  py-5 border-b border-gray-200 pb-4">
           <h2 className="text-3xl font-extrabold text-white">
             Upcoming Events
           </h2>
@@ -175,7 +174,6 @@ const Home = () => {
             {events.length} results found
           </div>
         </div>
-
         {loading ? (
           <div className="text-center py-20 text-xl font-semibold text-gray-600">
             Loading events...
@@ -185,7 +183,7 @@ const Home = () => {
             No events found matching your search.
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className=" max-w-7xl mx-auto pb-7 px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
             {events.map((event) => (
               <div
                 key={event._id}
@@ -268,7 +266,7 @@ const Home = () => {
       <footer className="mt-auto pt-16 pb-8 border-t border-gray-200 text-center">
         <div className="flex justify-center items-center gap-2 mb-4">
           <FaTicketAlt className="text-gray-800 text-2xl" />
-          <span className="text-xl font-bold text-gray-900">Eventora</span>
+          <span className="text-xl font-bold text-gray-900">Eventhive</span>
         </div>
         <p className="text-gray-500 text-sm mb-6 max-w-md mx-auto">
           The simplest, most dynamic way to manage, discover, and host

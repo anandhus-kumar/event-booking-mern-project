@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 import { AuthContext } from "./authContext";
 import api from "../utils/axios";
@@ -29,6 +27,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const register = async (name, email, password) => {
+    try {
+      const { data } = await api.post("/auth/register", {
+        name,
+        email,
+        password,
+      });
+      return data;
+    } catch (error) {
+      throw error.response?.data?.message || "Registration failed";
+    }
+  };
+
   const verifyOtp = async (userData) => {
     try {
       const { data } = await api.post("/auth/verify-otp", userData);
@@ -47,13 +58,10 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
   };
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout, verifyOtp }}>
+    <AuthContext.Provider
+      value={{ user, loading, login, logout, verifyOtp, register }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
-
-
-
-
-

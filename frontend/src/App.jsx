@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import { Route, Routes } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   const heroRef = useRef(null);
@@ -30,7 +33,12 @@ function App() {
   return (
     <div className=" w-full min-h-screen">
       <Navbar isHeroVisible={isHeroVisible} />
-      <Home heroRef={heroRef} />
+
+      <Routes>
+        <Route index path="/" element={<Home heroRef={heroRef} />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </div>
   );
 }
