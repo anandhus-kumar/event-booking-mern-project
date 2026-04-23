@@ -11,7 +11,7 @@ const Register = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { register, verifyOTP } = useContext(AuthContext);
+  const { register, verifyOtp } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -24,7 +24,7 @@ const Register = () => {
         setShowOTP(true);
         setError("");
       } else {
-        await verifyOTP(email, otp);
+        await verifyOtp(email, otp);
         navigate("/dashboard");
       }
     } catch (err) {
